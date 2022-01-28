@@ -9,6 +9,7 @@ Controle de estoque, inspirado no tutorial de Estoque do Regis do Python.
 * Crie um virtualenv com Python 3.
 * Ative o virtualenv.
 * Instale as dependências.
+* Rode as migrações.
 * Rode os testes.
 * Rode o projeto.
 
@@ -22,6 +23,7 @@ cd projeto
 python -m coverage run --source='.' manage.py test
 coverage report
 coverage html
+python manage.py migrate
 python manage.py runserver
 ```
 
