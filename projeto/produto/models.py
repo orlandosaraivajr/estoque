@@ -30,6 +30,8 @@ class Produto(models.Model):
             'estoque': self.estoque,
         }
 
+def get_absolute_url(self):
+    return reverse_lazy('produto:produto_detail', kwargs={'pk': self.pk})
 
 class Categoria(models.Model):
     categoria = models.CharField(max_length=100, unique=True)
