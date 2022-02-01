@@ -79,3 +79,41 @@ class CategoriaModelTest(TestCase):
     def test_str(self):
         self.assertEqual(str(self.categoria), 'celular')
 
+
+class View_produto_list_Test(TestCase):
+    def setUp(self):
+        self.resp = self.client.get('/produto')
+
+    def test_200_response(self):
+        self.assertEqual(200, self.resp.status_code)
+
+    def test_template_used(self):
+        self.assertTemplateUsed(self.resp, 'base.html')
+        self.assertTemplateUsed(self.resp, 'includes/nav.html')
+        self.assertTemplateUsed(self.resp, 'produto_list.html')
+        
+    def test_texto(self):
+        self.assertContains(self.resp, 'Estoque')
+
+
+class View_produto_add_Test(TestCase):
+    def setUp(self):
+        self.resp = self.client.get('/produtoadd')
+
+    def test_301_response(self):
+        self.assertEqual(301, self.resp.status_code)
+
+class View_produto_add_Test2(TestCase):
+    def setUp(self):
+        self.resp = self.client.get('/produtoadd', follow=True)
+
+    def test_200_response(self):
+        self.assertEqual(200, self.resp.status_code)
+
+    def test_template_used(self):
+        self.assertTemplateUsed(self.resp, 'base.html')
+        self.assertTemplateUsed(self.resp, 'includes/nav.html')
+        self.assertTemplateUsed(self.resp, 'produto_form2.html')
+        
+    def test_texto(self):
+        self.assertContains(self.resp, 'Estoque')
